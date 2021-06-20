@@ -1,5 +1,6 @@
 //React
 import React, { useState } from "react";
+import { Platform } from "react-native";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +34,10 @@ export default function SignIn() {
 
   return (
     <Background>
-      <Container>
+      <Container
+        behavior={Platform.OS === "ios" ? "padding" : ""}
+        enabled={true}
+      >
         <Logo source={require("../../assets/images/Logo.png")} />
         <AreaInput>
           <Input

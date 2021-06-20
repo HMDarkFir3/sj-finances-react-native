@@ -5,13 +5,15 @@ import React from "react";
 import { CustomInput } from "./styles";
 
 export default function Input(props) {
-  const { placeholder, autoCorrect, autoCapitalize } = props;
+  const { placeholder, onChangeText, value } = props;
 
   return (
     <CustomInput
-      placeholder={placeholder}
       autoCorrect={false}
       autoCapitalize="none"
+      placeholder={placeholder}
+      onChangeText={onChangeText}
+      value={value}
     />
   );
 }

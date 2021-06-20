@@ -5,10 +5,10 @@ import React from "react";
 import { CustomButton, TextButton } from "./styles";
 
 export default function Input(props) {
-  const { text } = props;
+  const { text, onPress } = props;
 
   return (
-    <CustomButton>
+    <CustomButton onPress={onPress}>
       <TextButton>{text}</TextButton>
     </CustomButton>
   );

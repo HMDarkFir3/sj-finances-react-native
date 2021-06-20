@@ -23,6 +23,12 @@ export const AreaInput = styled.View`
   width: 100%;
 `;
 
-export const Link = styled.TouchableOpacity``;
+export const Link = styled.TouchableOpacity`
+  margin-top: 5px;
+  margin-bottom: 10px;
+`;
 
-export const LinkText = styled.Text``;
+export const LinkText = styled.Text`
+  font-size: 18px;
+  color: #ffffff60;
+`;

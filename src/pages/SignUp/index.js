@@ -1,8 +1,11 @@
 //React
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
+
+//Contexts
+import { AuthContext } from "../../contexts/AuthContext";
 
 //Components
 import Input from "../../components/Input";
@@ -19,6 +22,9 @@ import {
 } from "./styles";
 
 export default function SignIn() {
+  //Contexts
+  const { signUp, loading } = useContext(AuthContext);
+
   //States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -58,7 +64,11 @@ export default function SignIn() {
           />
         </AreaInput>
 
-        <SubmitButton text="Cadastrar" onPress={() => {}} />
+        <SubmitButton
+          text="Cadastrar"
+          loading={loading}
+          onPress={() => signUp(name, email, password)}
+        />
 
         <Link onPress={navigateToSignIn}>
           <LinkText>Já possui uma conta?</LinkText>

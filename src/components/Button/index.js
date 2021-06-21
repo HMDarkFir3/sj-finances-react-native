@@ -9,7 +9,7 @@ export default function Button(props) {
   const { title, color, loading, onPress } = props;
 
   return (
-    <CustomButton style={{ backgroundColor: color }} onPress={onPress}>
+    <CustomButton color={color} onPress={onPress}>
       {loading === true ? (
         <ActivityIndicator size="small" color="#242424" />
       ) : (

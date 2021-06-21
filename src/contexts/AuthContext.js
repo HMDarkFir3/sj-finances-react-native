@@ -74,6 +74,7 @@ export default function AuthProvider({ children }) {
               uid: uid,
               name: name,
               email: value.user.email,
+              amount: 0,
             };
 
             setUser(data);
@@ -120,6 +121,7 @@ export default function AuthProvider({ children }) {
               uid: uid,
               name: snapshot.val().name,
               email: value.user.email,
+              amount: snapshot.val().amount,
             };
 
             setUser(data);

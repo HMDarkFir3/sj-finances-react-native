@@ -1,15 +1,19 @@
 //styled-components
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Background = styled.View`
   flex: 1;
-  align-items: center;
 
   background-color: #242424;
 `;
 
+export const Container = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+
 export const UserName = styled.Text`
-  margin-top: 25px;
+  margin-top: 15px;
 
   font-size: 28px;
   font-weight: bold;

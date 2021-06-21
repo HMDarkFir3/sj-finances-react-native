@@ -1,7 +1,10 @@
 //React
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { Alert } from "react-native";
 import { firebaseTranslationErrors } from "react-firebase-translation-errors";
+
+//Async Storage
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //Firebase
 import firebase from "../services/firebaseConnection";
@@ -11,6 +14,22 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    async function loadStorage() {
+      const storageUser = await AsyncStorage.getItem("@Finances:user");
+
+      if (storageUser) {
+        setUser(JSON.parse(storageUser));
+        setLoading(false);
+      }
+
+      setLoading(false);
+    }
+
+    loadStorage();
+  }, []);
 
   async function signUp(name, email, password) {
     setLoading(true);
@@ -56,6 +75,7 @@ export default function AuthProvider({ children }) {
             };
 
             setUser(data);
+            storageUser(data);
           });
       })
       .catch((error) => {
@@ -100,6 +120,7 @@ export default function AuthProvider({ children }) {
             };
 
             setUser(data);
+            storageUser(data);
           });
       })
       .catch((error) => {
@@ -108,6 +129,10 @@ export default function AuthProvider({ children }) {
       });
 
     setLoading(false);
+  }
+
+  async function storageUser(data) {
+    await AsyncStorage.setItem("@Finances:user", JSON.stringify(data));
   }
 
   return (

@@ -65,6 +65,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [React Navigation](https://reactnavigation.org)
 - [Firebase](https://firebase.google.com)
 - [styled-components](https://styled-components.com)
+- [lottie-react-native](https://github.com/lottie-react-native/lottie-react-native)
 - [react-native-iphone-x-helper](https://github.com/ptelad/react-native-iphone-x-helper)
 
 ---

@@ -10,7 +10,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 //Components
 import Input from "../../components/Input";
-import SubmitButton from "../../components/SubmitButton";
+import Button from "../../components/Button";
 
 //Styles
 import {
@@ -59,8 +59,9 @@ export default function SignIn() {
           />
         </AreaInput>
 
-        <SubmitButton
+        <Button
           title="Acessar"
+          color="#00b94a"
           loading={loading}
           onPress={() => signIn(email, password)}
         />

@@ -60,7 +60,7 @@ export default function SignIn() {
         </AreaInput>
 
         <SubmitButton
-          text="Acessar"
+          title="Acessar"
           loading={loading}
           onPress={() => signIn(email, password)}
         />

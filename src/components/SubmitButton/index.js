@@ -6,14 +6,14 @@ import { ActivityIndicator } from "react-native";
 import { CustomButton, TextButton } from "./styles";
 
 export default function Input(props) {
-  const { text, loading, onPress } = props;
+  const { title, loading, onPress } = props;
 
   return (
     <CustomButton onPress={onPress}>
       {loading === true ? (
         <ActivityIndicator size="small" color="#242424" />
       ) : (
-        <TextButton>{text}</TextButton>
+        <TextButton>{title}</TextButton>
       )}
     </CustomButton>
   );

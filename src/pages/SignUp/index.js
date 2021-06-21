@@ -65,7 +65,7 @@ export default function SignIn() {
         </AreaInput>
 
         <SubmitButton
-          text="Cadastrar"
+          title="Cadastrar"
           loading={loading}
           onPress={() => signUp(name, email, password)}
         />

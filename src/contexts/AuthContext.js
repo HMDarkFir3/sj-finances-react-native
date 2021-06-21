@@ -14,9 +14,10 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setLoadingAnimation(true);
     async function loadStorage() {
       const storageUser = await AsyncStorage.getItem("@Finances:user");
 
@@ -25,12 +26,13 @@ export default function AuthProvider({ children }) {
         setLoading(false);
       }
 
-      setLoading(false);
+      setLoadingAnimation(false);
     }
 
     loadStorage();
   }, []);
 
+  //SignUp Users
   async function signUp(name, email, password) {
     setLoading(true);
 
@@ -86,6 +88,7 @@ export default function AuthProvider({ children }) {
     setLoading(false);
   }
 
+  //SignIn Users
   async function signIn(email, password) {
     setLoading(true);
 
@@ -131,13 +134,38 @@ export default function AuthProvider({ children }) {
     setLoading(false);
   }
 
+  //SignOut Users
+  async function signOut() {
+    setLoading(true);
+
+    await firebase.auth().signOut();
+    await AsyncStorage.clear()
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        const err = firebaseTranslationErrors(error.code);
+        Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
+      });
+
+    setLoading(false);
+  }
+
   async function storageUser(data) {
     await AsyncStorage.setItem("@Finances:user", JSON.stringify(data));
   }
 
   return (
     <AuthContext.Provider
-      value={{ signed: !!user, user, loading, signUp, signIn }}
+      value={{
+        signed: !!user,
+        user,
+        loading,
+        loadingAnimation,
+        signUp,
+        signIn,
+        signOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

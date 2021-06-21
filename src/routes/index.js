@@ -12,14 +12,10 @@ import AuthRoutes from "./auth.routes";
 import AppRoutes from "./app.routes";
 
 export default function Routes() {
-  const { signed, loading } = useContext(AuthContext);
+  const { signed, loadingAnimation } = useContext(AuthContext);
 
-  if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+  if (loadingAnimation) {
+    return <Loading />;
   }
 
   return signed ? <AppRoutes /> : <AuthRoutes />;

@@ -2,10 +2,16 @@
 import React, { useContext } from "react";
 import { View, Text } from "react-native";
 
+import SubmitButton from "../../components/SubmitButton";
+
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Home() {
-  const { user } = useContext(AuthContext);
+  const { user, loading, signOut } = useContext(AuthContext);
 
-  return <View></View>;
+  return (
+    <View>
+      <SubmitButton title="Sair" loading={loading} onPress={() => signOut()} />
+    </View>
+  );
 }

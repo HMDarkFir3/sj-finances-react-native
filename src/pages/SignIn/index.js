@@ -1,9 +1,12 @@
 //React
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Platform } from "react-native";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
+
+//Contexts
+import { AuthContext } from "../../contexts/AuthContext";
 
 //Components
 import Input from "../../components/Input";
@@ -20,6 +23,9 @@ import {
 } from "./styles";
 
 export default function SignIn() {
+  //Contexts
+  const { signIn, loading } = useContext(AuthContext);
+
   //States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +59,11 @@ export default function SignIn() {
           />
         </AreaInput>
 
-        <SubmitButton text="Acessar" onPress={() => {}} />
+        <SubmitButton
+          text="Acessar"
+          loading={loading}
+          onPress={() => signIn(email, password)}
+        />
 
         <Link onPress={navigateToSignUp}>
           <LinkText>Não possui uma conta?</LinkText>

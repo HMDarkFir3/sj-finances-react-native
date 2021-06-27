@@ -1,8 +1,8 @@
 //React
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
-//Contexts
-import { AuthContext } from "../../contexts/AuthContext";
+//Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 //Components
 import Menu from "../../components/Menu";
@@ -31,7 +31,7 @@ export default function Home() {
   ]);
 
   //Context
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   return (
     <Background>

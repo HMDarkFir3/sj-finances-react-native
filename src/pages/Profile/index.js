@@ -1,11 +1,11 @@
 //React
-import React, { useContext } from "react";
+import React from "react";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
 
-//Contexts
-import { AuthContext } from "../../contexts/AuthContext";
+//Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 //Components
 import Menu from "../../components/Menu";
@@ -15,7 +15,7 @@ import Button from "../../components/Button";
 import { Background, Container, UserName, UserEmail } from "./styles";
 
 export default function Profile() {
-  const { user, loading, signOut } = useContext(AuthContext);
+  const { user, loading, signOut } = useAuth();
 
   const navigation = useNavigation();
 

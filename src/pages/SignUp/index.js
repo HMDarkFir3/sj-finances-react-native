@@ -1,11 +1,12 @@
 //React
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { Keyboard } from "react-native";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
 
-//Contexts
-import { AuthContext } from "../../contexts/AuthContext";
+//Hooks
+import { useAuth } from "../../hooks/useAuth";
 
 //Components
 import Input from "../../components/Input";
@@ -23,7 +24,7 @@ import {
 
 export default function SignIn() {
   //Contexts
-  const { signUp, loading } = useContext(AuthContext);
+  const { signUp, loading } = useAuth();
 
   //States
   const [name, setName] = useState("");
@@ -49,18 +50,26 @@ export default function SignIn() {
             placeholder="Nome"
             onChangeText={(t) => setName(t)}
             value={name}
+            keyboardType="default"
+            returnKeyType="next"
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           <Input
             placeholder="Email"
             onChangeText={(t) => setEmail(t)}
             value={email}
+            keyboardType="email-address"
+            returnKeyType="next"
+            onSubmitEditing={() => Keyboard.dismiss()}
           />
 
           <Input
             placeholder="Senha"
             onChangeText={(t) => setPassword(t)}
             value={password}
+            keyboardType="default"
+            returnKeyType="send"
           />
         </AreaInput>
 

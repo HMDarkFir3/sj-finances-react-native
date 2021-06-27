@@ -1,7 +1,9 @@
 //React
 import React, { useState, useEffect, createContext } from "react";
 import { Alert } from "react-native";
-import { firebaseTranslationErrors } from "react-firebase-translation-errors";
+
+//react-firebase-translation-errors
+import { translationFirebaseErrors } from "react-translation-firebase-errors";
 
 //Async Storage
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -82,7 +84,7 @@ export default function AuthProvider({ children }) {
           });
       })
       .catch((error) => {
-        const err = firebaseTranslationErrors(error.code);
+        const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
 
@@ -129,7 +131,7 @@ export default function AuthProvider({ children }) {
           });
       })
       .catch((error) => {
-        const err = firebaseTranslationErrors(error.code);
+        const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
 
@@ -146,7 +148,7 @@ export default function AuthProvider({ children }) {
         setUser(null);
       })
       .catch((error) => {
-        const err = firebaseTranslationErrors(error.code);
+        const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
 

@@ -10,8 +10,7 @@ export const CustomButton = styled.TouchableOpacity`
 
   margin-top: 10px;
 
-  background-color: ${(props) =>
-    props.color === "#00b94a" ? "#00b94a" : "#c62c36"};
+  background-color: ${(props) => props.color};
   border-radius: 10px;
 `;
 

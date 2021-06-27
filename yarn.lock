@@ -2138,6 +2138,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
   integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
 
+"@react-native-picker/picker@1.9.11":
+  version "1.9.11"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.9.11.tgz#490c752417c17d687e2941659b3c0bff9cb79b83"
+  integrity sha512-E7whvvMIl9Ln1sxgug7OAEVWQ69n82iV0d2OWWp5VV52+RW3azKh1IFm4rxdW5/oByMfl7FFL0eHNelGgY4BMQ==
+
 "@react-navigation/core@^5.15.3":
   version "5.15.3"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.15.3.tgz#dce7090bf3ea0d302993d742c706825e495b812e"
@@ -5599,11 +5604,6 @@ react-dom@16.13.1:
     prop-types "^15.6.2"
     scheduler "^0.19.1"
 
-react-firebase-translation-errors@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/react-firebase-translation-errors/-/react-firebase-translation-errors-1.0.8.tgz#913f51af98ebe30da9cfb6494c5b6f2c279c1bba"
-  integrity sha512-yQhN42YhZlYkhooiZwv9RwwohhryThaM5Yeh2VvYtfpnOmv6dOBP4Qxz+8rOW3Dviay75uj9tawjsMKjF0mVxQ==
-
 react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -5629,6 +5629,11 @@ react-native-iphone-x-helper@^1.3.0, react-native-iphone-x-helper@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
+
+react-native-paper-dates@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/react-native-paper-dates/-/react-native-paper-dates-0.4.6.tgz#e81006528694b3796bdbfd7202bc3ebb0759f2d1"
+  integrity sha512-hEjV040SgKpbcN3fq8gQyycGHKCYJmMocCM4Me1ovQrMTRG5Rwez7j1PnCeil/iY66HRn6cSJ713z7qrTHc3Ow==
 
 react-native-reanimated@~2.1.0:
   version "2.1.0"
@@ -5713,6 +5718,11 @@ react-timer-mixin@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
+
+react-translation-firebase-errors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-translation-firebase-errors/-/react-translation-firebase-errors-1.0.0.tgz#4b9dc4dc2152f3868ef075c91a9a4624749cd4b7"
+  integrity sha512-JjYdbqlniKnaOCbDV8QtkXkKv9xlfCz1Qr698ew3ZsS0aymufHHbA5qDjPnycRLxp6B7hMSemoUL9ALieRmfjQ==
 
 react@16.13.1:
   version "16.13.1"

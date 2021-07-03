@@ -90,7 +90,7 @@ export default function NewFinance() {
       .set({
         amount: parseFloat(replaceAmount),
         type: type,
-        date: format(new Date(), "dd/MM/yy"),
+        date: format(new Date(), "dd/MM/yyyy"),
       });
 
     let user = firebase.database().ref("users").child(uid);

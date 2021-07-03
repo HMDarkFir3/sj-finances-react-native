@@ -107,16 +107,13 @@ export default function NewFinance() {
         user.child("amount").set(amount);
 
         navigation.navigate("Home");
+        setLoading(false);
+        setAmountValue("");
       })
-
       .catch((error) => {
         const err = translationFirebaseErrors(error.code);
 
         Alert.alert(err);
-      })
-      .finally(() => {
-        setLoading(false);
-        setAmountValue("");
       });
   }
 

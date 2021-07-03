@@ -1,8 +1,12 @@
 //React
 import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
 
 //date-fns
-import { format } from "date-fns";
+import { format, isPast } from "date-fns";
+
+//react-firebase-translation-errors
+import { translationFirebaseErrors } from "react-translation-firebase-errors";
 
 //Hooks
 import { useAuth } from "../../hooks/useAuth";
@@ -65,6 +69,58 @@ export default function Home() {
       });
   }
 
+  function handleDelete(data) {
+    if (!isPast(new Date(data.date))) {
+      Alert.alert("Você não pode excluir um registro antigo.");
+      return;
+    }
+
+    Alert.alert(
+      "ATENÇÃO!",
+      `Você deseja excluir${"\n"}${
+        data.type === "expense" ? "Despesa" : "Receita"
+      } - Valor: ${data.amount}`,
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Excluir",
+          onPress: () => handleDeleteSuccess(data),
+        },
+      ]
+    );
+  }
+
+  async function handleDeleteSuccess(data) {
+    await firebase
+      .database()
+      .ref("historic")
+      .child(uid)
+      .child(data.key)
+      .remove()
+      .then(async () => {
+        let currentAmount = amount;
+
+        data.type === "expense"
+          ? (currentAmount += parseFloat(data.amount))
+          : (currentAmount -= parseFloat(data.amount));
+
+        await firebase
+          .database()
+          .ref("users")
+          .child(uid)
+          .child("amount")
+          .set(currentAmount);
+      })
+      .catch((error) => {
+        const err = translationFirebaseErrors(error.code);
+
+        Alert.alert(err);
+      });
+  }
+
   useEffect(() => {
     loadHistoric();
   }, []);
@@ -85,7 +141,7 @@ export default function Home() {
         data={historic}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
-          <HistoricList data={item} onLongPress={() => alert("ee")} />
+          <HistoricList data={item} onLongPress={handleDelete} />
         )}
         showsVerticalScrollIndicator={false}
       />

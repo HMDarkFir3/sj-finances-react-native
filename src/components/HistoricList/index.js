@@ -21,7 +21,7 @@ export default function HistoricList(props) {
   const { type, amount, date } = props.data;
 
   return (
-    <TouchableWithoutFeedback onLongPress={onLongPress}>
+    <TouchableWithoutFeedback onLongPress={() => onLongPress(props.data)}>
       <Container>
         <Type>
           <IconView type={type}>
@@ -30,7 +30,7 @@ export default function HistoricList(props) {
               color="#ffffff"
               size={20}
             />
-            <TypeText>{type}</TypeText>
+            <TypeText>{type === "revenue" ? "Receita" : "Despesa"}</TypeText>
           </IconView>
         </Type>
 

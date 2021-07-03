@@ -1,6 +1,9 @@
 //React
 import React, { useState, useEffect } from "react";
 
+//date-fns
+import { format } from "date-fns";
+
 //Hooks
 import { useAuth } from "../../hooks/useAuth";
 
@@ -38,6 +41,28 @@ export default function Home() {
       .on("value", (snapshot) => {
         setAmount(snapshot.val().amount);
       });
+
+    await firebase
+      .database()
+      .ref("historic")
+      .child(uid)
+      .orderByChild("date")
+      .equalTo(format(new Date(), "dd/MM/yy"))
+      .limitToLast(10)
+      .on("value", (snapshot) => {
+        setHistoric([]);
+
+        snapshot.forEach((childItem) => {
+          let list = {
+            key: childItem.key,
+            type: childItem.val().type,
+            amount: childItem.val().amount,
+            date: childItem.val().date,
+          };
+
+          setHistoric((oldArray) => [...oldArray, list].reverse());
+        });
+      });
   }
 
   useEffect(() => {
@@ -49,7 +74,9 @@ export default function Home() {
       <Menu />
       <Container>
         <UserName>{user && user.name}</UserName>
-        <UserAmount>R$ {user && amount}</UserAmount>
+        <UserAmount>
+          R$ {user && amount.toFixed(2).replace(".", ",")}
+        </UserAmount>
       </Container>
 
       <Title>Ultimas movimentações</Title>

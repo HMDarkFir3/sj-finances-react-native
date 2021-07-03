@@ -15,7 +15,7 @@ export default function HistoricList(props) {
       <Type>
         <IconView type={type}>
           <Feather
-            name={type === "receita" ? "arrow-up" : "arrow-down"}
+            name={type === "revenue" ? "arrow-up" : "arrow-down"}
             color="#ffffff"
             size={20}
           />

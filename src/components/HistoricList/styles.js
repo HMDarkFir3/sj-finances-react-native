@@ -21,7 +21,7 @@ export const IconView = styled.View`
   height: 25px;
 
   background-color: ${(props) =>
-    props.type === "receita" ? "#00b94a" : "#c62c36"};
+    props.type === "revenue" ? "#00b94a" : "#c62c36"};
   border-radius: 7px;
 `;
 

@@ -60,7 +60,12 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 - [React Navigation](https://reactnavigation.org)
 - [Firebase](https://firebase.google.com)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/docs/install/)
+- [date-fns](https://date-fns.org)
 - [styled-components](https://styled-components.com)
+- [react-native-picker/picker](https://github.com/react-native-picker/picker)
+- [react-native-community/datetimepicker](https://github.com/react-native-datetimepicker/datetimepicker)
+- [react-translation-firebase-errors](https://www.npmjs.com/package/react-translation-firebase-errors)
 - [lottie-react-native](https://github.com/lottie-react-native/lottie-react-native)
 - [react-native-iphone-x-helper](https://github.com/ptelad/react-native-iphone-x-helper)
 

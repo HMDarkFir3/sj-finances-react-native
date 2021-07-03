@@ -67,6 +67,7 @@ export default function SignIn() {
             value={password}
             keyboardType="default"
             returnKeyType="send"
+            secureTextEntry={true}
           />
         </AreaInput>
 

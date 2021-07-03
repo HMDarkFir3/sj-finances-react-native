@@ -57,10 +57,9 @@ export default function Home() {
             key: childItem.key,
             type: childItem.val().type,
             amount: childItem.val().amount,
-            date: childItem.val().date,
           };
 
-          setHistoric((oldArray) => [...oldArray, list].reverse());
+          setHistoric((oldArray) => [...oldArray, list]);
         });
       });
   }

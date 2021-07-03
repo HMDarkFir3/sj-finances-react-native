@@ -31,8 +31,20 @@ export const TypeText = styled.Text`
   color: #ffffff;
 `;
 
+export const Content = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const AmountText = styled.Text`
   font-size: 22px;
   font-weight: bold;
   color: #222222;
+`;
+
+export const DateText = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #22222290;
 `;

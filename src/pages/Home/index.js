@@ -57,6 +57,7 @@ export default function Home() {
             key: childItem.key,
             type: childItem.val().type,
             amount: childItem.val().amount,
+            date: childItem.val().date,
           };
 
           setHistoric((oldArray) => [...oldArray, list]);
@@ -83,7 +84,9 @@ export default function Home() {
       <List
         data={historic}
         keyExtractor={(item) => item.key}
-        renderItem={({ item }) => <HistoricList data={item} />}
+        renderItem={({ item }) => (
+          <HistoricList data={item} onLongPress={() => alert("ee")} />
+        )}
         showsVerticalScrollIndicator={false}
       />
     </Background>

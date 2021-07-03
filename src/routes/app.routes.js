@@ -4,6 +4,9 @@ import React from "react";
 //React Navigation
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+//Components
+import CustomDrawer from "../components/CustomDrawer";
+
 //Pages
 import Home from "../pages/Home";
 import NewFinance from "../pages/NewFinance";
@@ -14,6 +17,7 @@ const Drawer = createDrawerNavigator();
 export default function AppRoutes() {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
       drawerStyle={{
         backgroundColor: "#242424",
       }}

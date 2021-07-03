@@ -41,6 +41,8 @@ export default function NewFinance() {
     setLoading(true);
     Keyboard.dismiss();
 
+    let replaceAmount = amountValue.replace(",", ".");
+
     if (amountValue === "") {
       Alert.alert("Campo vazio");
       setLoading(false);
@@ -62,7 +64,7 @@ export default function NewFinance() {
     Alert.alert(
       "Confirmando dados",
       `Tipo ${type === "revenue" ? "Receita" : "Despesa"} - Valor: ${parseFloat(
-        amountValue
+        replaceAmount
       )}`,
       [
         { text: "Cancelar", style: "cancel" },
@@ -78,13 +80,15 @@ export default function NewFinance() {
 
     let key = await firebase.database().ref("historic").child(uid).push().key;
 
+    let replaceAmount = amountValue.replace(",", ".");
+
     await firebase
       .database()
       .ref("historic")
       .child(uid)
       .child(key)
       .set({
-        amount: parseFloat(amountValue),
+        amount: parseFloat(replaceAmount),
         type: type,
         date: format(new Date(), "dd/MM/yy"),
       });
@@ -97,7 +101,7 @@ export default function NewFinance() {
         let amount = parseFloat(snapshot.val().amount);
 
         type === "expense"
-          ? (amount -= parseFloat(amountValue))
+          ? (amount -= parseFloat(replaceAmount))
           : (amount += parseFloat(amountValue));
 
         user.child("amount").set(amount);

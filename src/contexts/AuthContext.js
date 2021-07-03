@@ -17,20 +17,6 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loadingAnimation, setLoadingAnimation] = useState(true);
 
-  useEffect(() => {
-    async function loadStorage() {
-      const storageUser = await AsyncStorage.getItem("@Finances:user");
-
-      if (storageUser) {
-        setUser(JSON.parse(storageUser));
-      }
-
-      setLoadingAnimation(false);
-    }
-
-    loadStorage();
-  }, []);
-
   //SignUp Users
   async function signUp(name, email, password) {
     if (name === "") {
@@ -140,6 +126,20 @@ export default function AuthProvider({ children }) {
   async function storageUser(data) {
     await AsyncStorage.setItem("@Finances:user", JSON.stringify(data));
   }
+
+  async function loadStorage() {
+    const storageUser = await AsyncStorage.getItem("@Finances:user");
+
+    if (storageUser) {
+      setUser(JSON.parse(storageUser));
+    }
+
+    setLoadingAnimation(false);
+  }
+
+  useEffect(() => {
+    loadStorage();
+  }, []);
 
   return (
     <AuthContext.Provider

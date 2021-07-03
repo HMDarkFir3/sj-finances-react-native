@@ -1,5 +1,5 @@
 //React
-import React from "react";
+import React, { useState } from "react";
 
 //React Navigation
 import { useNavigation } from "@react-navigation/native";
@@ -15,12 +15,19 @@ import Button from "../../components/Button";
 import { Background, Container, UserName, UserEmail } from "./styles";
 
 export default function Profile() {
-  const { user, loading, signOut } = useAuth();
+  const { user, signOut } = useAuth();
+
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
 
   function navigateToNewFinance() {
     navigation.navigate("NewFinance");
+  }
+
+  function handleSignOut() {
+    setLoading(true);
+    signOut();
   }
 
   return (
@@ -40,7 +47,7 @@ export default function Profile() {
           title="Sair"
           color="#c62c36"
           loading={loading}
-          onPress={() => signOut()}
+          onPress={handleSignOut}
         />
       </Container>
     </Background>

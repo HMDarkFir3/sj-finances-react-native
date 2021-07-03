@@ -24,17 +24,23 @@ import {
 
 export default function SignIn() {
   //Contexts
-  const { signUp, loading } = useAuth();
+  const { signUp } = useAuth();
 
   //States
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //Navigation
   const navigation = useNavigation();
 
   //Functions
+  function handleSignUp() {
+    setLoading(true);
+    signUp(name, email, password);
+  }
+
   function navigateToSignIn() {
     navigation.navigate("SignIn");
   }
@@ -77,7 +83,7 @@ export default function SignIn() {
           title="Cadastrar"
           color="#00b94a"
           loading={loading}
-          onPress={() => signUp(name, email, password)}
+          onPress={handleSignUp}
         />
 
         <Link onPress={navigateToSignIn}>

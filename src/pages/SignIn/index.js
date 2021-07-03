@@ -24,16 +24,22 @@ import {
 
 export default function SignIn() {
   //Contexts
-  const { signIn, loading } = useAuth();
+  const { signIn } = useAuth();
 
   //States
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //Navigation
   const navigation = useNavigation();
 
   //Functions
+  function handleSignIn() {
+    setLoading(true);
+    signIn(email, password);
+  }
+
   function navigateToSignUp() {
     navigation.navigate("SignUp");
   }
@@ -68,7 +74,7 @@ export default function SignIn() {
           title="Acessar"
           color="#00b94a"
           loading={loading}
-          onPress={() => signIn(email, password)}
+          onPress={handleSignIn}
         />
 
         <Link onPress={navigateToSignUp}>

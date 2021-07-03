@@ -15,17 +15,14 @@ export const AuthContext = createContext({});
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [loadingAnimation, setLoadingAnimation] = useState(false);
+  const [loadingAnimation, setLoadingAnimation] = useState(true);
 
   useEffect(() => {
-    setLoadingAnimation(true);
     async function loadStorage() {
       const storageUser = await AsyncStorage.getItem("@Finances:user");
 
       if (storageUser) {
         setUser(JSON.parse(storageUser));
-        setLoading(false);
       }
 
       setLoadingAnimation(false);
@@ -36,23 +33,18 @@ export default function AuthProvider({ children }) {
 
   //SignUp Users
   async function signUp(name, email, password) {
-    setLoading(true);
-
     if (name === "") {
       Alert.alert("ATENÇÃO!", "Campo nome em branco.", [{ text: "OK" }]);
-      setLoading(false);
       return;
     }
 
     if (email === "") {
       Alert.alert("ATENÇÃO!", "Campo email em branco.", [{ text: "OK" }]);
-      setLoading(false);
       return;
     }
 
     if (password === "") {
       Alert.alert("ATENÇÃO!", "Campo senha em branco.", [{ text: "OK" }]);
-      setLoading(false);
       return;
     }
 
@@ -87,23 +79,19 @@ export default function AuthProvider({ children }) {
         const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
-
-    setLoading(false);
   }
 
   //SignIn Users
   async function signIn(email, password) {
-    setLoading(true);
-
     if (email === "") {
       Alert.alert("ATENÇÃO!", "Campo email em branco.", [{ text: "OK" }]);
-      setLoading(false);
+
       return;
     }
 
     if (password === "") {
       Alert.alert("ATENÇÃO!", "Campo senha em branco.", [{ text: "OK" }]);
-      setLoading(false);
+
       return;
     }
 
@@ -134,14 +122,10 @@ export default function AuthProvider({ children }) {
         const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
-
-    setLoading(false);
   }
 
   //SignOut Users
   async function signOut() {
-    setLoading(true);
-
     await firebase.auth().signOut();
     await AsyncStorage.clear()
       .then(() => {
@@ -151,8 +135,6 @@ export default function AuthProvider({ children }) {
         const err = translationFirebaseErrors(error.code);
         Alert.alert("ATENÇÃO!", `${err}`, [{ text: "OK" }]);
       });
-
-    setLoading(false);
   }
 
   async function storageUser(data) {
@@ -164,7 +146,6 @@ export default function AuthProvider({ children }) {
       value={{
         signed: !!user,
         user,
-        loading,
         loadingAnimation,
         signUp,
         signIn,

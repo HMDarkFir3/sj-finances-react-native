@@ -1,6 +1,6 @@
 //React
 import React, { useState, useEffect } from "react";
-import { Alert } from "react-native";
+import { Alert, TouchableWithoutFeedback, Platform } from "react-native";
 
 //date-fns
 import { format, isBefore } from "date-fns";
@@ -14,6 +14,7 @@ import { useAuth } from "../../hooks/useAuth";
 //Components
 import Menu from "../../components/Menu";
 import HistoricList from "../../components/HistoricList";
+import DatePicker from "../../components/DatePicker";
 
 //Firebase
 import firebase from "../../services/firebaseConnection";
@@ -24,13 +25,19 @@ import {
   Container,
   UserName,
   UserAmount,
+  LastestMoves,
   Title,
   List,
 } from "./styles";
 
+//Icons
+import { Feather } from "@expo/vector-icons";
+
 export default function Home() {
   const [historic, setHistoric] = useState([]);
   const [amount, setAmount] = useState(0);
+  const [newDate, setNewDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   //Context
   const { user } = useAuth();
@@ -51,7 +58,7 @@ export default function Home() {
       .ref("historic")
       .child(uid)
       .orderByChild("date")
-      .equalTo(format(new Date(), "dd/MM/yyyy"))
+      .equalTo(format(newDate, "dd/MM/yyyy"))
       .limitToLast(10)
       .on("value", (snapshot) => {
         setHistoric([]);
@@ -74,7 +81,7 @@ export default function Home() {
 
     const itemDate = new Date(`${itemYear}/${itemMonth}/${itemDay}`);
 
-    const currentDateformat = format(new Date(), "dd/MM/yyyy");
+    const currentDateformat = format(newDate, "dd/MM/yyyy");
 
     const [currentDay, currentMonth, currentYear] =
       currentDateformat.split("/");
@@ -134,9 +141,23 @@ export default function Home() {
       });
   }
 
+  function handleShowDatePicker() {
+    setShowDatePicker(true);
+  }
+
+  function handleCloseDatePicker() {
+    setShowDatePicker(false);
+  }
+
+  function onChange(date) {
+    setShowDatePicker(Platform.OS === "ios");
+
+    setNewDate(date);
+  }
+
   useEffect(() => {
     loadHistoric();
-  }, []);
+  }, [newDate]);
 
   return (
     <Background>
@@ -148,7 +169,12 @@ export default function Home() {
         </UserAmount>
       </Container>
 
-      <Title>Ultimas movimentações</Title>
+      <LastestMoves>
+        <TouchableWithoutFeedback onPress={handleShowDatePicker}>
+          <Feather name="calendar" color="#ffffff" size={24} />
+        </TouchableWithoutFeedback>
+        <Title>Ultimas movimentações</Title>
+      </LastestMoves>
 
       <List
         data={historic}
@@ -158,6 +184,14 @@ export default function Home() {
         )}
         showsVerticalScrollIndicator={false}
       />
+
+      {showDatePicker && (
+        <DatePicker
+          onClose={handleCloseDatePicker}
+          date={newDate}
+          onChange={onChange}
+        />
+      )}
     </Background>
   );
 }

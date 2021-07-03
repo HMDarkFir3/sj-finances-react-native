@@ -26,9 +26,16 @@ export const UserAmount = styled.Text`
   color: #ffffff;
 `;
 
-export const Title = styled.Text`
+export const LastestMoves = styled.View`
+  flex-direction: row;
+  align-items: center;
+
   margin-bottom: 10px;
   margin-left: 15px;
+`;
+
+export const Title = styled.Text`
+  margin-left: 7px;
 
   color: #00b94a;
 `;

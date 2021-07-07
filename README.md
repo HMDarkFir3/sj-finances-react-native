@@ -41,10 +41,10 @@ $ cd Finances_Firebase
 
 ```bash
 # Instale as dependências
-$ yarn install
+$ yarn install ou npm install
 
 # Execute a Aplicação em Desenvolvimento
-$ expo start
+$ expo start 
 
 # O servidor inciará na porta:19002 - acesse http://localhost:19002
 ```
